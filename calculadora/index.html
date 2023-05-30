@@ -10,6 +10,15 @@
       background-color: rgb(245, 245, 245);
     }
 
+    div {
+      background-color: rgb(255, 255, 255);
+      padding: 10px;
+      text-align: center;
+      width: 70px;
+    }
+    labels {
+      background-color: aqua;
+    }
     h1 {
       text-align: center;
     }
@@ -21,7 +30,9 @@
     }
 
     input {
-      width: 60px;
+      width: 95px;
+      margin-left: 10;
+      margin-bottom: 8px;
     }
 
     button {
@@ -80,17 +91,19 @@
 <body>
   <h1>Calculadora de Horas</h1>
   
-  <label for="hora-inicial">Hora Inicial:</label>
-  <input type="number" id="hora-inicial" min="0" max="23">
-  <input type="number" id="minuto-inicial" min="0" max="59"><br>
+  <div>
+    <div class="labels">
+  <input placeholder="Hora Inicial" type="number" id="hora-inicial" min="0" max="20">&nbsp;:
+  <input placeholder="Minuto Inicial" type="number" id="minuto-inicial" min="0" max="59"><br>
   
-  <label for="hora-final">Hora Final:</label>
-  <input type="number" id="hora-final" min="0" max="23">
-  <input type="number" id="minuto-final" min="0" max="59"><br>
+  <input placeholder="Hora Final" type="number" id="hora-final" min="0" max="23">&nbsp;:
+  <input placeholder="Minuto Final" type="number" id="minuto-final" min="0" max="59"><br>
   
   <button onclick="somarHoras()">Somar</button>
   <button onclick="subtrairHoras()">Subtrair</button>
   
   <p id="resultado"></p>
+    </div>
+  </div>
 </body>
 </html>
