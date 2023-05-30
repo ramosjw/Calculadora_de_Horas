@@ -2,36 +2,72 @@
 <html>
 <head>
   <title>Calculadora de Horas</title>
-  <script>
-    function somarHoras(horaInicial, minutoInicial, horaFinal, minutoFinal) {
-      let totalHoras = horaInicial + horaFinal;
-      let totalMinutos = minutoInicial + minutoFinal;
-
-      if (totalMinutos >= 60) {
-        totalHoras += Math.floor(totalMinutos / 60);
-        totalMinutos %= 60;
-      }
-
-      if (totalHoras > 0) {
-        totalHoras = 0;
-      }
-
-      if (totalMinutos < 0) {
-        totalMinutos = 0;
-      } else if (totalMinutos >= 60) {
-        totalMinutos = 59;
-      }
-
-      return totalHoras + ':' + totalMinutos;
+  <style>
+    body {
+      font-family: Arial, sans-serif;
     }
 
-    function calcular() {
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      display: inline-block;
+      width: 100px;
+    }
+
+    input {
+      width: 60px;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+
+    #resultado {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+  <script>
+    function formatTime(hours, minutes) {
+      if (minutes >= 60) {
+        hours += Math.floor(minutes / 60);
+        minutes %= 60;
+      }
+
+      if (minutes < 0) {
+        minutes = 0;
+      } else if (minutes >= 60) {
+        minutes = 59;
+      }
+
+      return hours + ':' + minutes.toString().padStart(2, '0');
+    }
+
+    function somarHoras() {
       const horaInicial = parseInt(document.getElementById('hora-inicial').value);
       const minutoInicial = parseInt(document.getElementById('minuto-inicial').value);
       const horaFinal = parseInt(document.getElementById('hora-final').value);
       const minutoFinal = parseInt(document.getElementById('minuto-final').value);
 
-      const resultado = somarHoras(horaInicial, minutoInicial, horaFinal, minutoFinal);
+      let totalHoras = horaInicial + horaFinal;
+      let totalMinutos = minutoInicial + minutoFinal;
+
+      const resultado = formatTime(totalHoras, totalMinutos);
+      document.getElementById('resultado').textContent = 'Resultado: ' + resultado;
+    }
+
+    function subtrairHoras() {
+      const horaInicial = parseInt(document.getElementById('hora-inicial').value);
+      const minutoInicial = parseInt(document.getElementById('minuto-inicial').value);
+      const horaFinal = parseInt(document.getElementById('hora-final').value);
+      const minutoFinal = parseInt(document.getElementById('minuto-final').value);
+
+      let totalHoras = horaInicial - horaFinal;
+      let totalMinutos = minutoInicial - minutoFinal;
+
+      const resultado = formatTime(totalHoras, totalMinutos);
       document.getElementById('resultado').textContent = 'Resultado: ' + resultado;
     }
   </script>
@@ -51,7 +87,8 @@
   <label for="minuto-final">Minuto Final:</label>
   <input type="number" id="minuto-final" min="0" max="59"><br>
   
-  <button onclick="calcular()">Calcular</button>
+  <button onclick="somarHoras()">Somar</button>
+  <button onclick="subtrairHoras()">Subtrair</button>
   
   <p id="resultado"></p>
 </body>
